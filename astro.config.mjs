@@ -7,6 +7,8 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import image from "@astrojs/image";
 
+import compress from "astro-compress";
+
 import { SITE } from "./src/config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,6 +27,7 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
+    compress(),
     sitemap(),
     image(),
   ],
