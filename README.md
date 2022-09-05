@@ -29,6 +29,7 @@
 - [Getting started](#getting-started)
   - [Project structure](#project-structure)
   - [Commands](#commands)
+  - [Configuration](#configuration)
   - [Deploy](#deploy)
 - [Roadmap](#roadmap)
 - [Frequently Asked Questions](#frequently-asked-questions)
@@ -42,7 +43,7 @@
 
 ## Demo
 
-[🏠 astrowind.vercel.app](https://astrowind.vercel.app/) 
+[👉 astrowind.vercel.app](https://astrowind.vercel.app/) 
 
 <br>
 
@@ -68,6 +69,8 @@ Inside AstroWind template, you'll see the following folders and files:
 |   |       ├── post-slug-1.md
 |   |       └── ...
 │   ├── components/
+│   │   ├── atoms/
+│   │   ├── blog/
 │   │   ├── core/
 |   |   └── widgets/
 |   |       ├── Header.astro
@@ -77,9 +80,15 @@ Inside AstroWind template, you'll see the following folders and files:
 │   |   |── BaseLayout.astro
 │   |   └── ...
 │   ├── pages/
-│   |   ├── blog/
+│   |   ├── [...blog]/
 |   |   |   ├── [...page].astro
 |   |   |   └── [slug].astro
+│   |   ├── [...categories]/
+|   |   |   └── [category]/
+|   |   |       └── [...page].astro
+│   |   ├── [...tags]/
+|   |   |   └── [tag]/
+|   |   |       └── [...page].astro
 │   |   ├── index.astro
 |   |   ├── 404.astro
 |   |   └-- rss.xml.js
@@ -114,6 +123,46 @@ All commands are run from the root of the project, from a terminal:
 
 <br>
 
+### Configuration
+
+Basic configuration file: `./src/config.mjs`
+
+```javascript
+export const SITE = {
+  name: "Example",
+
+  origin: "https://example.com",
+  basePathname: "/", // Change this if you need to deploy to Github Pages, for example
+
+  title: "Example - This is the homepage title of Example",
+  description: "This is the homepage description of Example",
+
+  googleAnalyticsId: false, // or "G-XXXXXXXXXX",
+  googleSiteVerificationId: false // or some value,
+};
+
+export const BLOG = {
+  disabled: false,
+  slug: "blog", // you can change this to "articles" (/articles)
+
+  postsWithoutBlogSlug: true, // true (/some-slug), false (/blog/some-slug), 
+  postsPerPage: 6,
+
+  category: {
+    disabled: false,
+    slug: "category", // set empty to change from /category/some-slug to /some-slug
+  },
+
+  tag: {
+    disabled: false,
+    slug: "tag",
+  },
+};
+
+```
+
+<br>
+
 ### Deploy
 
 #### Deploy to production (manual)
@@ -128,15 +177,11 @@ Now, your website is ready to be deployed. All generated files are located at
 `dist` folder, which you can deploy the folder to any hosting service you
 prefer.
 
-<br>
-
 #### Deploy to Netlify
 
 Clone this repository on own GitHub account and deploy to Netlify:
 
 [![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/onwidget/astrowind)
-
-<br>
 
 #### Deploy to Vercel
 
@@ -158,8 +203,8 @@ Clone this repository on own GitHub account and deploy to Vercel:
   - **(DONE)** Add support to easily manage SEO meta-tags (title, description, canonical, social sharing, ...)
 - *Blog*:
   - **(DONE)** Support to Fast and SEO friendly blog
+  - **(DONE)** Add support for categories and tags.
   - Improve blog design
-  - Add support for categories and tags.
   - Create component or utilities for latest posts
   - Create component or utilities for related posts
   - Add more *shortcodes* or *embed* functions to posts in Markdown: (eg video, tweet...)
@@ -175,7 +220,7 @@ Clone this repository on own GitHub account and deploy to Vercel:
 
 - 
 - 
-- 
+-
 
 
 <br>

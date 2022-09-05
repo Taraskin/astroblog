@@ -1,31 +1,33 @@
 ---
+import { SITE } from "~/config.mjs";
+import { getCanonical, getHomePermalink } from "~/utils/permalinks";
 import Layout from "~/layouts/PageLayout.astro";
 
-import { SITE } from "~/config.mjs";
-
 import Hero from "~/components/widgets/Hero.astro";
-import BasicCTA from "~/components/widgets/BasicCTA.astro";
-import BasicFeatures from "~/components/widgets/BasicFeatures.astro";
-import StepsFeatures from "~/components/widgets/StepsFeatures.astro";
+import Features from "~/components/widgets/Features.astro";
+import Features2 from "~/components/widgets/Features2.astro";
+import Steps from "~/components/widgets/Steps.astro";
+import Features3 from "~/components/widgets/Features3.astro";
+import HighlightedPosts from "~/components/blog/HighlightedPosts.astro";
 import FAQs from "~/components/widgets/FAQs.astro";
-import TwoColsFeatures from "~/components/widgets/TwoColsFeatures.astro";
-import StepsLeft from "~/components/widgets/StepsLeft.astro";
-import HighlightedPosts from "~/components/widgets/HighlightedPosts.astro";
 import Stats from "~/components/widgets/Stats.astro";
+import CallToAction from "~/components/widgets/CallToAction.astro";
 
-const title = SITE.title;
-const description = SITE.description;
-const canonical = new URL("", Astro.site);
+const meta = {
+  title: SITE.title,
+  description: SITE.description,
+  canonical: getCanonical(getHomePermalink()),
+};
 ---
 
-<Layout meta={{ title, description, canonical }}>
+<Layout meta={meta}>
   <Hero />
-  <BasicFeatures />
-  <StepsLeft />
-  <TwoColsFeatures />
-  <StepsFeatures />
+  <Features />
+  <Steps />
+  <Features2 />
+  <Features3 />
   <HighlightedPosts />
   <FAQs />
   <Stats />
-  <BasicCTA />
+  <CallToAction />
 </Layout>
